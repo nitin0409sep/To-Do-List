@@ -1,0 +1,241 @@
+<%- include("header") -%>
+
+  <% var i=1; %>
+  
+  <% var j=1; %>
+
+
+    <div class="box" id="heading">
+      <h1>
+        <%= listTitle %>
+      </h1>
+    </div>
+
+    <div class="box ">
+
+
+      <% newListItems.forEach(function(item){ %>
+        <form action="/delete" method="post">
+          <div class="item" id="item<%=i++%>">
+            <div class="container new1">
+              <div class="modal-container new1">
+                <input type="checkbox" id="modal-toggle<%=++j %>" class="modal-toggle">
+                <label for="modal-toggle<%=j %>" class="modal-btn">
+                  <%=item.summary %>
+                </label>
+             
+              
+              <div class="modal-backdrop new1"></div>
+              <div class="modal-content new1">
+                  <label for="modal-toggle<%=j %>" class="modal-close">&times;</label>
+                  <h2>
+                    <%=item.summary %>
+                  </h2>
+                  <p>
+                    <%=item.description %>
+                  </p>
+                   <!--   <label for="modal-toggle<%=j %>" class="modal-content-btn">OK</label>  -->
+                 </div>
+              </div>
+            </div> 
+
+            <button type="submit"
+              style="background-color: transparent; position: absolute; width: 2rem; margin-left: 330px;" name="submit"
+              value="<%=item._id%>">
+              <img class="image" style="margin-left :1.5rem; margin-top: -0.9rem; position: absolute;"
+                src="trash.png"></button>
+            <input type="checkbox" maxlength="2" id="cutter" name="checkbox" value="<%=item._id%>"
+              style=" margin-top:0.9rem; position: absolute; margin-left: 340px;">
+
+          </div>
+          <input type="hidden" name="listName" value="<%= listTitle%>"></input>
+        </form>
+        <% }) %>
+
+
+          <button onclick="myFunction()" id="buttonAdd" name="list" value="<%= listTitle %>">+</button>
+          <div id="hiddenElement" style="display: none;">
+            <form action="/" method="post">
+              <input type="submit" id="addtodo" name="addtodo" value="Add To Do"
+                style="background-color: #FF616D; margin-left: 8rem; border-radius: 0%;">
+              <input type="submit" id="cancel" name="cancel" value="Cancel" style="background-color: #FF616D;">
+
+              <table>
+                <tr>
+                  <td>Summary</td>
+                  <td><input style="text-align: left;" type="text" id="summary" name="summary"
+                      placeholder="Insert Task's Summary"></td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td><textarea id="description" class="description" name="description" rows="4" cols="40"
+                      placeholder="Insert Task's Description"></textarea></td>
+                </tr>
+              </table>
+
+
+            </form>
+          </div>
+
+
+    </div>
+
+    <%- include("footer") -%>
+
+      <script>
+        function myFunction() {
+          var buttonAdd = document.getElementById("buttonAdd")
+          buttonAdd.style.display = "none";
+          var x = document.getElementById("hiddenElement");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+      </script>
+      <script src="external.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+      <%- include("header") -%>
+
+      <% var i=1; %>
+      
+      <% var j=1; %>
+    
+    
+        <div class="box" id="heading">
+          <h1>
+            <%= listTitle %>
+          </h1>
+        </div>
+    
+        <div class="box ">
+    
+    
+          <% newListItems.forEach(function(item){ %>
+            <form action="/delete" method="post">
+              <div class="item" id="item<%=i++%>">
+                <div class="container new1">
+                  <div class="modal-container new1">
+                    <input type="checkbox" id="modal-toggle<%=++j %>" class="modal-toggle">
+                    <label for="modal-toggle<%=j %>" class="modal-btn">
+                      <%=item.summary %>
+                    </label>
+                 
+                  
+                  <div class="modal-backdrop new1"></div>
+                  <div class="modal-content new1">
+                      <label for="modal-toggle<%=j %>" class="modal-close">&times;</label>
+                      <h2>
+                        <%=item.summary %>
+                      </h2>
+                      <p>
+                        <%=item.description %>
+                      </p>
+                        <label for="modal-toggle<%=j %>" class="modal-content-btn">OK</label>  
+                     </div>
+                  </div>
+                </div> 
+    
+                <button type="submit"
+                  style="background-color: transparent; position: absolute; width: 2rem; margin-left: 330px;" name="submit"
+                  value="<%=item._id%>">
+                  <img class="image" style="margin-left :1.5rem; margin-top: -0.9rem; position: absolute;"
+                    src="trash.png"></button>
+                <input type="checkbox" maxlength="2" id="cutter" name="checkbox" value="<%=item._id%>"
+                  style=" margin-top:0.9rem; position: absolute; margin-left: 340px;">
+    
+              </div>
+              <input type="hidden" name="listName" value="<%= listTitle%>"></input>
+            </form>
+            <% }) %>
+    
+    
+              <button onclick="myFunction()" id="buttonAdd" name="list" value="<%= listTitle %>">+</button>
+              <div id="hiddenElement" style="display: none;">
+                <form action="/" method="post">
+                  <input type="submit" id="addtodo" name="addtodo" value="Add To Do"
+                    style="background-color: #FF616D; margin-left: 8rem; border-radius: 0%;">
+                  <input type="submit" id="cancel" name="cancel" value="Cancel" style="background-color: #FF616D;">
+    
+                  <table>
+                    <tr>
+                      <td>Summary</td>
+                      <td><input style="text-align: left;" type="text" id="summary" name="summary"
+                          placeholder="Insert Task's Summary"></td>
+                    </tr>
+                    <tr>
+                      <td>Description</td>
+                      <td><textarea id="description" class="description" name="description" rows="4" cols="40"
+                          placeholder="Insert Task's Description"></textarea></td>
+                    </tr>
+                  </table>
+    
+    
+                </form>
+              </div>
+    
+    
+        </div>
+    
+        <%- include("footer") -%>
+    
+          <script>
+            function myFunction() {
+              var buttonAdd = document.getElementById("buttonAdd")
+              buttonAdd.style.display = "none";
+              var x = document.getElementById("hiddenElement");
+              if (x.style.display === "none") {
+                x.style.display = "block";
+              } else {
+                x.style.display = "none";
+              }
+            }
+          </script>
+          <script src="external.js"></script>
+     -->
+    
+    
